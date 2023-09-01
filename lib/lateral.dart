@@ -217,6 +217,10 @@ class _LateralState extends State<Lateral> {
         break;
     }
     var cotanOfXDim = 1 / (tan(degreeLateral * pi / 180)) * addSubDim;
+    if (i == 4) {
+      takeOff = cotanOfXDim +
+          (1 / (sin(degreeLateral * pi / 180)) * headerSizeOD / 2);
+    }
     var cosecOfAngle = 0.0;
     switch (i) {
       case 1:
@@ -246,6 +250,8 @@ class _LateralState extends State<Lateral> {
     }
     _8ordinates.add(cotanOfXDim + cosecOfAngle);
   }
+
+  wrapToWrap = centerToCenter - (2 * takeOff);
 
   return (_4ordinates, _8ordinates, wrapToWrap, takeOff);
 }
