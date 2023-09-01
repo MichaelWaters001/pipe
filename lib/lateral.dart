@@ -117,6 +117,27 @@ class _LateralState extends State<Lateral> {
                               ),
                             )
                             .toList(),
+                      if (ordinates8.isNotEmpty)
+                        ...ordinates8
+                            .asMap()
+                            .entries
+                            .map(
+                              (entry) => Text(
+                                'Ordinate ${entry.key}: ${entry.value.toStringAsFixed(4)}',
+                                style: TextStyle(fontSize: 16),
+                              ),
+                            )
+                            .toList(),
+                      SizedBox(height: 10),
+                      Text(
+                        'Wrap to Wrap: $wrapToWrap',
+                        style: TextStyle(fontSize: 16),
+                      ),
+                      SizedBox(height: 10),
+                      Text(
+                        'Take Off: $takeOff',
+                        style: TextStyle(fontSize: 16),
+                      ),
                     ],
                   ),
                 ),
