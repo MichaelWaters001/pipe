@@ -84,7 +84,7 @@ class _NintyIntersectionState extends State<NintyIntersection> {
                             .entries
                             .map(
                               (entry) => Text(
-                                'Ordinate ${entry.key}: ${entry.value.toStringAsFixed(4)}',
+                                '${entry.key}: ${entry.value.toStringAsFixed(4)}',
                                 style: TextStyle(fontSize: 16),
                               ),
                             )

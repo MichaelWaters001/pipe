@@ -1,5 +1,6 @@
 import 'dart:math';
 import 'package:flutter/material.dart';
+import 'fraction.dart';
 
 class Lateral extends StatefulWidget {
   @override
@@ -105,37 +106,25 @@ class _LateralState extends State<Lateral> {
                         'Ordinates:',
                         style: TextStyle(fontSize: 20),
                       ),
-                      SizedBox(height: 10),
-                      if (ordinates4.isNotEmpty)
-                        ...ordinates4
-                            .asMap()
-                            .entries
-                            .map(
-                              (entry) => Text(
-                                'Ordinate ${entry.key}: ${entry.value.toStringAsFixed(4)}',
-                                style: TextStyle(fontSize: 16),
-                              ),
-                            )
-                            .toList(),
                       if (ordinates8.isNotEmpty)
                         ...ordinates8
                             .asMap()
                             .entries
                             .map(
                               (entry) => Text(
-                                'Ordinate ${entry.key}: ${entry.value.toStringAsFixed(4)}',
+                                '${entry.key}: ${asFraction(entry.value)}',
                                 style: TextStyle(fontSize: 16),
                               ),
                             )
                             .toList(),
                       SizedBox(height: 10),
                       Text(
-                        'Wrap to Wrap: $wrapToWrap',
+                        'Wrap to Wrap: ${wrapToWrap.toStringAsFixed(4)}',
                         style: TextStyle(fontSize: 16),
                       ),
                       SizedBox(height: 10),
                       Text(
-                        'Take Off: $takeOff',
+                        'Take Off: ${takeOff.toStringAsFixed(4)}',
                         style: TextStyle(fontSize: 16),
                       ),
                     ],
@@ -204,13 +193,13 @@ class _LateralState extends State<Lateral> {
         addSubDim = branchIDRadius - xDimensionBranch[0];
         break;
       case 5:
-        addSubDim = branchIDRadius - xDimensionBranch[1];
+        addSubDim = branchIDRadius + xDimensionBranch[1];
         break;
       case 6:
-        addSubDim = branchIDRadius - xDimensionBranch[2];
+        addSubDim = branchIDRadius + xDimensionBranch[2];
         break;
       case 7:
-        addSubDim = branchIDRadius - xDimensionBranch[3];
+        addSubDim = branchIDRadius + xDimensionBranch[3];
         break;
       case 8:
         addSubDim = branchIDRadius * 2;
