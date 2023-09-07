@@ -1,6 +1,7 @@
 import 'dart:math';
 import 'package:flutter/material.dart';
 import 'fraction.dart';
+import 'package:fraction/fraction.dart';
 
 class Lateral extends StatefulWidget {
   @override
@@ -71,12 +72,11 @@ class _LateralState extends State<Lateral> {
                       SizedBox(height: 20),
                       ElevatedButton(
                         onPressed: () {
-                          double branchSizeOD = double.tryParse(bsod.text) ?? 0;
-                          double branchWall = double.tryParse(bw.text) ?? 0;
-                          double headerSizeOD = double.tryParse(hsod.text) ?? 0;
-                          double degreeLateral = double.tryParse(dl.text) ?? 0;
-                          double centerToCenter =
-                              double.tryParse(c2c.text) ?? 0;
+                          double branchSizeOD = readDecOrFrac(bsod.text);
+                          double branchWall = readDecOrFrac(bw.text);
+                          double headerSizeOD = readDecOrFrac(hsod.text);
+                          double degreeLateral = readDecOrFrac(dl.text);
+                          double centerToCenter = readDecOrFrac(c2c.text);
                           setState(() {
                             var (o4, o8, w, t) = _calculateLateralOrdinates(
                                 branchSizeOD,
