@@ -1,5 +1,6 @@
 import 'dart:math';
 import 'package:flutter/material.dart';
+import 'fraction.dart';
 
 class NintyIntersection extends StatefulWidget {
   @override
@@ -7,6 +8,7 @@ class NintyIntersection extends StatefulWidget {
 }
 
 class _NintyIntersectionState extends State<NintyIntersection> {
+  bool displayFraction = true; // Initially display as fraction
   TextEditingController _BSOD = TextEditingController();
   TextEditingController _BW = TextEditingController();
   TextEditingController _HSOD = TextEditingController();
@@ -73,6 +75,15 @@ class _NintyIntersectionState extends State<NintyIntersection> {
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
+                      ElevatedButton(
+                        onPressed: () {
+                          setState(() {
+                            displayFraction =
+                                !displayFraction; // Toggle the display mode
+                          });
+                        },
+                        child: Text('Toggle Dec / Frac'),
+                      ),
                       Text(
                         'Ordinates:',
                         style: TextStyle(fontSize: 20),
@@ -84,7 +95,7 @@ class _NintyIntersectionState extends State<NintyIntersection> {
                             .entries
                             .map(
                               (entry) => Text(
-                                '${entry.key}: ${entry.value.toStringAsFixed(4)}',
+                                '${entry.key}: ${formatDouble(entry.value, displayFraction)}',
                                 style: TextStyle(fontSize: 16),
                               ),
                             )
