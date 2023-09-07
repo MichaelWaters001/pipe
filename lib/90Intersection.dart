@@ -9,9 +9,9 @@ class NintyIntersection extends StatefulWidget {
 
 class _NintyIntersectionState extends State<NintyIntersection> {
   bool displayFraction = true; // Initially display as fraction
-  TextEditingController _BSOD = TextEditingController();
-  TextEditingController _BW = TextEditingController();
-  TextEditingController _HSOD = TextEditingController();
+  TextEditingController bsod = TextEditingController();
+  TextEditingController bw = TextEditingController();
+  TextEditingController hsod = TextEditingController();
   List<double> ordinates = [];
 
   @override
@@ -31,20 +31,20 @@ class _NintyIntersectionState extends State<NintyIntersection> {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       TextField(
-                        controller: _BSOD,
+                        controller: bsod,
                         keyboardType: TextInputType.number,
                         decoration:
                             InputDecoration(labelText: 'Branch Size OD'),
                       ),
                       SizedBox(height: 20),
                       TextField(
-                        controller: _BW,
+                        controller: bw,
                         keyboardType: TextInputType.number,
                         decoration: InputDecoration(labelText: 'Branch Wall'),
                       ),
                       SizedBox(height: 20),
                       TextField(
-                        controller: _HSOD,
+                        controller: hsod,
                         keyboardType: TextInputType.number,
                         decoration:
                             InputDecoration(labelText: 'Header Size OD'),
@@ -52,11 +52,9 @@ class _NintyIntersectionState extends State<NintyIntersection> {
                       SizedBox(height: 20),
                       ElevatedButton(
                         onPressed: () {
-                          double branchSizeOD =
-                              double.tryParse(_BSOD.text) ?? 0;
-                          double branchWall = double.tryParse(_BW.text) ?? 0;
-                          double headerSizeOD =
-                              double.tryParse(_HSOD.text) ?? 0;
+                          double branchSizeOD = readDecOrFrac(bsod.text);
+                          double branchWall = readDecOrFrac(bw.text);
+                          double headerSizeOD = readDecOrFrac(hsod.text);
                           setState(() {
                             ordinates = _calculateOrdinates(
                                 branchSizeOD, branchWall, headerSizeOD);
@@ -113,8 +111,8 @@ class _NintyIntersectionState extends State<NintyIntersection> {
 
   @override
   void dispose() {
-    _BSOD.dispose();
-    _BW.dispose();
+    bsod.dispose();
+    bw.dispose();
     super.dispose();
   }
 }
