@@ -8,6 +8,7 @@ class Lateral extends StatefulWidget {
 }
 
 class _LateralState extends State<Lateral> {
+  bool displayFraction = true; // Initially display as fraction
   TextEditingController bsod = TextEditingController();
   TextEditingController bw = TextEditingController();
   TextEditingController hsod = TextEditingController();
@@ -102,6 +103,15 @@ class _LateralState extends State<Lateral> {
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
+                      ElevatedButton(
+                        onPressed: () {
+                          setState(() {
+                            displayFraction =
+                                !displayFraction; // Toggle the display mode
+                          });
+                        },
+                        child: Text('Toggle Dec / Frac'),
+                      ),
                       Text(
                         'Ordinates:',
                         style: TextStyle(fontSize: 20),
@@ -112,19 +122,19 @@ class _LateralState extends State<Lateral> {
                             .entries
                             .map(
                               (entry) => Text(
-                                '${entry.key}: ${asFraction(entry.value)}',
+                                '${entry.key}: ${formatDouble(entry.value, displayFraction)}',
                                 style: TextStyle(fontSize: 16),
                               ),
                             )
                             .toList(),
                       SizedBox(height: 10),
                       Text(
-                        'Wrap to Wrap: ${wrapToWrap.toStringAsFixed(4)}',
+                        'Wrap to Wrap: ${formatDouble(wrapToWrap, displayFraction)}',
                         style: TextStyle(fontSize: 16),
                       ),
                       SizedBox(height: 10),
                       Text(
-                        'Take Off: ${takeOff.toStringAsFixed(4)}',
+                        'Take Off: ${formatDouble(takeOff, displayFraction)}',
                         style: TextStyle(fontSize: 16),
                       ),
                     ],
